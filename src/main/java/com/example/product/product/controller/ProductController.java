@@ -19,12 +19,14 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> productCreate(ProductRegisterDto dto, @RequestHeader("X-User-Id") String userId) {
+    public ResponseEntity<?> productCreate(@RequestBody ProductRegisterDto dto, @RequestHeader("X-User-Id") String userId) {
+        System.out.println("확인입니다 : " + dto);
+
         Product product = productService.productCreate(dto, userId);
         return new ResponseEntity<>(product.getId(), HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> productDetail(@PathVariable Long id, @RequestHeader("X-User-Id") String userId) throws InterruptedException {
         Thread.sleep(3000L);
         ProductResDto productResDto = productService.productDetail(id);

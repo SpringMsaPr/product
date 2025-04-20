@@ -15,9 +15,11 @@ public class ProductRegisterDto {
     private int price;
     private int stockQuantity;
 
-    public Product toEntity(Long userId){
+    public Product toEntity(Long userId, String name, String category, int price, int stockQuantity){
         return Product.builder()
-                .name(this.name).price(this.price).stockQuantity(this.stockQuantity)
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
                 .memberId(userId)
                 .build();
     }

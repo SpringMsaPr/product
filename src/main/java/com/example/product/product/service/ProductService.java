@@ -24,7 +24,8 @@ public class ProductService {
     }
 
     public Product productCreate(ProductRegisterDto dto, String userId){
-        Product product = productRepository.save(dto.toEntity(Long.parseLong(userId)));
+        Product product = productRepository.save(dto.toEntity(Long.parseLong(userId), dto.getName(),
+                dto.getCategory(), dto.getPrice(), dto.getStockQuantity()));
         return product;
     }
 
